@@ -1,0 +1,189 @@
+\documentclass[]{article}
+\usepackage{datetime}
+\usepackage{color,array,graphics}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{geometry}
+\usetikzlibrary{arrows,automata}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+\usepackage{romannum}
+
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\voffset0.0in
+
+\def\OR{\vee}
+\def\AND{\wedge}
+\def\imp{\rightarrow}
+\def\math#1{$#1$}
+\def\mand#1{$$#1$$}
+\def\mld#1{\begin{equation}
+#1
+\end{equation}}
+\def\eqar#1{\begin{eqnarray}
+#1
+\end{eqnarray}}
+\def\eqan#1{\begin{eqnarray*}
+#1
+\end{eqnarray*}}
+\def\cl#1{{\cal #1}}
+
+\DeclareSymbolFont{AMSb}{U}{msb}{m}{n}
+\DeclareMathSymbol{\N}{\mathbin}{AMSb}{"4E}
+\DeclareMathSymbol{\Z}{\mathbin}{AMSb}{"5A}
+\DeclareMathSymbol{\R}{\mathbin}{AMSb}{"52}
+\DeclareMathSymbol{\Q}{\mathbin}{AMSb}{"51}
+\DeclareMathSymbol{\I}{\mathbin}{AMSb}{"49}
+\DeclareMathSymbol{\C}{\mathbin}{AMSb}{"43}
+
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+\begin{document}
+
+\rightline{Dong Hu}
+\centerline{\bf \Large HOMEWORK 2} 
+
+\bigskip
+\section*{Problem 1.6}
+Because the instruction counts are the same, we use IC to represent it.\\
+\\
+$T_{P1}= \frac{(0.1\times 1+0.2\times 2+0.5\times 3+0.2\times 3)\times IC}{2.5}$\
+\\
+\hspace*{4.5ex}$= \frac{2.6IC}{2.5}$\\
+\hspace*{4.5ex}= $1.04\times IC$\\
+\\
+$T_{P2}= \frac{(0.1\times 2+0.2\times 2+0.5\times 2+0.2\times 2)\times IC}{3}$\
+
+\hspace*{1ex}$= \frac{2IC}{3}$\\
+\hspace*{4.5ex}=  $0.67\times IC < 1.04\times IC = T_{P1}$\\
+Thus P2 is \underline{Faster}
+\begin{enumerate}[(1)]
+\item $Global\ CPI_{P1} = \frac{CPU\ time\times clock\ rate}{Instruction\ count}$\\
+\hspace*{15.3ex}=$\frac{1.04\times 10^{-3}\times 2.5\times 10^9}{10^6}$\\
+\hspace*{15.3ex}=2.6\\
+\\$Global\ CPI_{P2} = \frac{CPU\ time\times clock\ rate}{Instruction\ count}$\\
+\hspace*{15.3ex}=$\frac{0.67\times 10^{-3}\times 3\times 10^9}{10^6}$\\
+\hspace*{15.3ex}=2.01
+\item $\#of\ clock\ cycles_{P1} = Global\ CPI_{P1}\times Instruction\ count$\\
+\hspace*{20.5ex}=$2.6\times 10^6$\\
+$\#of\ clock\ cycles_{P2} = Global\ CPI_{P2}\times Instruction\ count$\\
+\hspace*{20.5ex}=$2.01\times 10^6$\\
+\end{enumerate}
+\newpage
+
+
+\section*{Problem 1.9}
+\begin{enumerate}[(1)]
+\item $CPU\ time_{P1} = \frac{clock\ cycle}{clock rate}$\\
+\hspace*{14.2ex}= $\frac{2.56E9\times 1+1.28E9\times 12+2.56E8\times 5}{2E9}$\\
+\hspace*{14.2ex}= 9.6\ sec\\\\
+$CPU\ time_{P2} = \frac{clock\ cycle}{clock rate}$\\
+\hspace*{14.2ex}= $\frac{\frac{2.56E9\times 1}{0.7\times 2}+\frac{1.28E9\times 12}{0.7\times 2}+2.56E8\times 5}{2E9}$\\
+\hspace*{14.2ex}= 7.02\ sec\\\\
+$CPU\ time_{P4} = \frac{clock\ cycle}{clock rate}$\\
+\hspace*{14.2ex}= $\frac{\frac{2.56E9\times 1}{0.7\times 4}+\frac{1.28E9\times 12}{0.7\times 4}+2.56E8\times 5}{2E9}$\\
+\hspace*{14.2ex}= 3.86\ sec\\\\
+$CPU\ time_{P8} = \frac{clock\ cycle}{clock rate}$\\
+\hspace*{14.2ex}= $\frac{\frac{2.56E9\times 1}{0.7\times 8}+\frac{1.28E9\times 12}{0.7\times 8}+2.56E8\times 5}{2E9}$\\
+\hspace*{14.2ex}= 2.25\ sec\\\\
+2 Processors speedup = $\frac{9.6\ sec}{7.02 \ sec} = 1.37\ times$\\
+\\
+4 Processors speedup = $\frac{9.6\ sec}{3.86 \ sec} = 2.49\ times$\\
+\\
+8 Processors speedup = $\frac{9.6\ sec}{2.25 \ sec} = 4.27\ times$\\
+
+\item $CPU\ time_{P1} = \frac{clock\ cycle}{clock rate}$\\
+\hspace*{14.2ex}= $\frac{2.56E9\times 2+1.28E9\times 12+2.56E8\times 5}{2E9}$\\
+\hspace*{14.2ex}= 10.88\ sec\\\\
+$CPU\ time_{P2} = \frac{clock\ cycle}{clock rate}$\\
+\hspace*{14.2ex}= $\frac{\frac{2.56E9\times 2}{0.7\times 2}+\frac{1.28E9\times 12}{0.7\times 2}+2.56E8\times 5}{2E9}$\\
+\hspace*{14.2ex}= 7.95\ sec\\\\
+$CPU\ time_{P4} = \frac{clock\ cycle}{clock rate}$\\
+\hspace*{14.2ex}= $\frac{\frac{2.56E9\times 2}{0.7\times 4}+\frac{1.28E9\times 12}{0.7\times 4}+2.56E8\times 5}{2E9}$\\
+\hspace*{14.2ex}= 4.30\ sec\\\\
+$CPU\ time_{P8} = \frac{clock\ cycle}{clock rate}$\\
+\hspace*{14.2ex}= $\frac{\frac{2.56E9\times 2}{0.7\times 8}+\frac{1.28E9\times 12}{0.7\times 8}+2.56E8\times 5}{2E9}$\\
+\hspace*{14.2ex}= 2.47\ sec\\\\
+
+\item 4 Processors CPU time = 3.86\ sec (from 1.9.1)\\
+let the CPI for load/store be x.\\
+Then we have $\frac{2.56E9\times 2+1.28E9\times x+2.56E8\times 5}{2E9} = 3.86$\\
+\hspace*{37.2ex}0.64x = 1.94\\
+\hspace*{40.6ex} x = 3.03\\\\
+Hence the reduced CPI is 3.03/12 = 0.25 = 25\%
+
+\end{enumerate}
+\newpage
+\section*{Problem 1.13}
+\begin{enumerate}[(1)]
+\item INT = 250-70-85-40 = 55\\\\
+FP New = 70$\times$(1-0.2) = 56\\\\
+Total New = 56+85+55+40 = 236 \ sec\\\\
+Reduced Time = 250-236 = 14\ sec\\\\
+Reduced Rate = $\frac{14\ sec}{250\ sec}\times 100\%$ = 5.6\%\\
+\item Total New = 250$\times$(1-0.2) = 200\\\\
+INT New = 200-70-85-40 = 5\\\\
+Reduced Rate = $\frac{5}{55}\times 100\% = 90.9\%$
+\item New Total = 250$\times$(1-0.2) = 200\\\\
+New\ Total-Old\ Total = 250 - 200 = 50 $>$ 40\\\\
+Hence we cannot reduce total time by just reducing the branch instructions.\\
+\end{enumerate}
+\newpage
+\section*{Problem 1.14}
+\begin{enumerate}[(1)]
+\item Each processor clock rate is 2GHz
+\\Execution time = $\sum\frac{Clock cycles}{Clock rate}$
+\\Clock cycles = $CPI_{FP}\times IC_{FP} +CPI_{INT}\times IC_{INT}+CPI_{L/S}\times IC_{L/S}+CPI_{branch}\times IC_{branch}$
+\\\hspace*{12.4ex} =$(50\times 10^4\times 1)+(110\times 10^4\times 1)+(80\times 10^4\times 4)+(16\times 10^4\times 2)$
+\\\hspace*{12.4ex} =$5.12\times 10^8$e
+\\For Floating point instructions:
+\\\hspace*{5.5ex}Execution time = $\frac{5.12\time 10^8}{2\times 10^9} = 0.256 sec$
+\\For 16 processors:
+\\\hspace*{4.5ex} Execution time = $\frac{5.12\time 10^8}{2\times 10^9} = 0.256 sec$
+\\Half the number of clock cycles to improve the CPI of FP instructions:
+\\\hspace*{4.5ex} $\frac{Clockcycles}{2}$ = $CPI_{FPimproved}\times IC_{FP} +CPI_{INT}\times IC_{INT}+CPI_{L/S}\times IC_{L/S}+CPI_{branch}\times IC_{branch}$
+$CPI_{FPimproved} =\frac{\frac{Clockcycles}{2}-CPI_{INT}\times IC_{INT}+CPI_{L/S}\times IC_{L/S}+CPI_{branche}\times IC_{branch}}{IC_{FP}}$
+\\\hspace*{16.2ex}=$\frac{\frac{5.12\times 10^8}{2}-(110\times 10^4\times 1)+(80\times 10^4\times 4)+(16\times 10^4\times 2)}{50\times 10^6}$
+\\\hspace*{16.2ex}=$-4.12<0$
+\\Thus we cannot improve CPI of Floating Point two times faster since the result is negative.
+\item Half the number of clock cycles to improve the CPI of LS instructions:
+\\\hspace*{5ex} $\frac{Clockcycles}{2}$ = $CPI_{FP}\times IC_{FP} +CPI_{INT}\times IC_{INT}+CPI_{L/Simproved}\times IC_{L/S}+CPI_{branch}\times IC_{branch}$
+$CPI_{L/Simproved} =\frac{\frac{Clockcycles}{2}-CPI_{FP}\times IC_{FP}+CPI_{INT}\times IC_{INT}+CPI_{branch}\times IC_{branch}}{IC_{L/S}}$
+\\\hspace*{16.8ex}=$\frac{\frac{5.12\times 10^8}{2}-(50\times 10^4\times 1)+(110\times 10^4\times 1)+(16\times 10^4\times 2)}{80\times 10^4}$
+\\\hspace*{16.8ex}=$0.8>0$
+\\Thus in order to improve the program by two times, we need to improve $CPI_{LS}$ by $\frac{4}{0.8}=5$ times.
+\item Reduce 40$\%$ on Floating point: $CPI_{FP}=1-1\times0.4=0.6$
+\\Reduce 40$\%$ on INT: $CPI_{INT}=1-1\times0.4=0.6$
+\\Reduce 30$\%$ on Load/Store: $CPI_{L/S}=4-4\times0.3=2.8$
+\\Reduce 30$\%$ on Branch: $CPI_{branch}=2-2\times0.3=1.4$
+\\Initial Execution time=$\frac{342.4\times 10^6}{2\times10^9} = 0.1712\ sec$
+\\Thus, improving execution time of program =$\frac{0.256sec}{0.171sec}=1.497\ times$
+\end{enumerate}
+
+
+\end{document}
